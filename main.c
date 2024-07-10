@@ -12,9 +12,8 @@ int main(void) {
     address.sin_family = AF_INET;
     address.sin_port = 2000;
     inet_pton(AF_INET, ip, &address.sin_addr.s_addr);
-    address.sin_addr.s_addr;
 
-    connect(socket_file_descriptor, &address, sizeof address );
+    int result = connect(socket_file_descriptor, &address, sizeof address );
 
     return 0;
 }
