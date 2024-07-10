@@ -1,0 +1,3 @@
+/Users/piotrcembrowski/CLionProjects/socket_client/cmake-build-debug/CMakeFiles/socket_client.dir
+/Users/piotrcembrowski/CLionProjects/socket_client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/piotrcembrowski/CLionProjects/socket_client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
