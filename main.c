@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <string.h>
 
 int main(void) {
 
@@ -18,6 +19,8 @@ int main(void) {
     if(result == 0)
         printf("Connection was successful.\n");
 
+    char buffer[1024];
+    send(socket_file_descriptor,buffer, strlen(buffer), 0);
 
     return 0;
 }
