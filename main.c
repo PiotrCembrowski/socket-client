@@ -4,9 +4,13 @@
 #include <arpa/inet.h>
 #include <string.h>
 
+int createTCPIpv4Socket(void) {
+    return socket(AF_INET, SOCK_STREAM, 0);
+}
+
 int main(void) {
 
-    int socket_file_descriptor = socket(AF_INET, SOCK_STREAM, 0);
+    int socket_file_descriptor = createTCPIpv4Socket();
 
     char* ip = "142.250.188.46";
     struct sockaddr_in address;
@@ -25,5 +29,8 @@ int main(void) {
 
     char buffer[1024];
     recv(socket_file_descriptor, buffer, 1024, 0);
+
+    printf("Response was %s ", buffer);
+
     return 0;
 }
