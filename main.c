@@ -19,7 +19,8 @@ int main(void) {
     if(result == 0)
         printf("Connection was successful.\n");
 
-    char buffer[1024];
+    char* buffer;
+    buffer = "GET \\ HTTP/1.1\r\nHost:google.com\r\n\r\n";
     send(socket_file_descriptor,buffer, strlen(buffer), 0);
 
     return 0;
