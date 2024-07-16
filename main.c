@@ -7,13 +7,17 @@ int main(void) {
 
     int socket_file_descriptor = socket(AF_INET, SOCK_STREAM, 0);
 
-    char* ip = "235.3.42.1";
+    char* ip = "142.250.188.46";
     struct sockaddr_in address;
     address.sin_family = AF_INET;
-    address.sin_port = 2000;
+    address.sin_port = htons(80);
     inet_pton(AF_INET, ip, &address.sin_addr.s_addr);
 
     int result = connect(socket_file_descriptor, &address, sizeof address );
+
+    if(result == 0)
+        printf("Connection was successful.\n");
+
 
     return 0;
 }
