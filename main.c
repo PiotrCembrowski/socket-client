@@ -3,17 +3,25 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <malloc/_malloc.h>
+
+struct sockaddr_in* createIPv4Address(char *ip, int port);
 
 int createTCPIpv4Socket();
 
-void createIPv4Address();
+struct sockaddr_in* createIPv4Address(char *ip, int port) {
+    struct sockaddr_in *address = malloc(sizeof(struct sockaddr_in));
+    address.sin_family = AF_INET;
+    address.sin_port = htons(port);
+    inet_pton(AF_INET, ip, &address.sin_addr.s_addr);
+    return address;
+}
 
 int main(void) {
 
     int socket_file_descriptor = createTCPIpv4Socket();
 
-    struct sockaddr_in address;
-    createIPv4Address(&address);
+    struct sockaddr_in address = createIPv4Address(NULL, 0);
 
     int result = connect(socket_file_descriptor, &address, sizeof address );
 
@@ -34,11 +42,4 @@ int main(void) {
 
 int createTCPIpv4Socket(void) {
     return socket(AF_INET, SOCK_STREAM, 0);
-}
-
-void createIPv4Address(struct sockaddr_in *address) {
-    char* ip = "142.250.188.46";
-    address->sin_family = AF_INET;
-    address->sin_port = htons(80);
-    inet_pton(AF_INET, ip, &address->sin_addr.s_addr);
 }
