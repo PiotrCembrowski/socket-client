@@ -4,9 +4,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 
-int createTCPIpv4Socket(void) {
-    return socket(AF_INET, SOCK_STREAM, 0);
-}
+int createTCPIpv4Socket();
 
 int main(void) {
 
@@ -33,4 +31,8 @@ int main(void) {
     printf("Response was %s ", buffer);
 
     return 0;
+}
+
+int createTCPIpv4Socket(void) {
+    return socket(AF_INET, SOCK_STREAM, 0);
 }
