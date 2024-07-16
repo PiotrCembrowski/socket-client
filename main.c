@@ -6,15 +6,14 @@
 
 int createTCPIpv4Socket();
 
+void createIPv4Address();
+
 int main(void) {
 
     int socket_file_descriptor = createTCPIpv4Socket();
 
-    char* ip = "142.250.188.46";
     struct sockaddr_in address;
-    address.sin_family = AF_INET;
-    address.sin_port = htons(80);
-    inet_pton(AF_INET, ip, &address.sin_addr.s_addr);
+    createIPv4Address(&address);
 
     int result = connect(socket_file_descriptor, &address, sizeof address );
 
@@ -35,4 +34,11 @@ int main(void) {
 
 int createTCPIpv4Socket(void) {
     return socket(AF_INET, SOCK_STREAM, 0);
+}
+
+void createIPv4Address(struct sockaddr_in *address) {
+    char* ip = "142.250.188.46";
+    address->sin_family = AF_INET;
+    address->sin_port = htons(80);
+    inet_pton(AF_INET, ip, &address->sin_addr.s_addr);
 }
