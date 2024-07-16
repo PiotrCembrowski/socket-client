@@ -11,9 +11,9 @@ int createTCPIpv4Socket();
 
 struct sockaddr_in* createIPv4Address(char *ip, int port) {
     struct sockaddr_in *address = malloc(sizeof(struct sockaddr_in));
-    address.sin_family = AF_INET;
-    address.sin_port = htons(port);
-    inet_pton(AF_INET, ip, &address.sin_addr.s_addr);
+    address->sin_family = AF_INET;
+    address->sin_port = htons(port);
+    inet_pton(AF_INET, ip, &address->sin_addr.s_addr);
     return address;
 }
 
@@ -21,9 +21,9 @@ int main(void) {
 
     int socket_file_descriptor = createTCPIpv4Socket();
 
-    struct sockaddr_in address = createIPv4Address(NULL, 0);
+    struct sockaddr_in *address = createIPv4Address(NULL, 0);
 
-    int result = connect(socket_file_descriptor, &address, sizeof address );
+    int result = connect(socket_file_descriptor, address, sizeof(*address) );
 
     if(result == 0)
         printf("Connection was successful.\n");
