@@ -21,7 +21,7 @@ int main(void) {
 
     int socket_file_descriptor = createTCPIpv4Socket();
 
-    struct sockaddr_in *address = createIPv4Address(NULL, 0);
+    struct sockaddr_in *address = createIPv4Address("142.250.188.46", 80);
 
     int result = connect(socket_file_descriptor, address, sizeof(*address) );
 
